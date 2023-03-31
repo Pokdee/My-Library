@@ -25,10 +25,11 @@ let myLibrary = [
   },
 ];
 //DisplayBooks
-const displayBook = function () {
-  for (let i = 0; i < myLibrary.length; i++) {
-    const book = myLibrary[i];
-    const html = `
+const displayBook = function (array) {
+  container.innerHTML = "";
+  for (let i = 0; i < array.length; i++) {
+    const book = array[i];
+    let html = `
     <div class="book">
     <h3>${book.name}</h3>
     <h3>${book.author}</h3>
@@ -36,10 +37,10 @@ const displayBook = function () {
     <h3>${book.read}</h3>
   </div>
     `;
-    container.insertAdjacentHTML("afterbegin", html);
+    container.insertAdjacentHTML("beforeend", html);
   }
 };
-displayBook();
+displayBook(myLibrary);
 
 //Form
 form.addEventListener("submit", (e) => {
@@ -50,10 +51,9 @@ form.addEventListener("submit", (e) => {
   for (let items of data) {
     obj[items[0]] = items[1];
   }
-  console.log(obj);
   myLibrary.push(obj);
-  console.log(myLibrary);
   inDAta.forEach((i) => (i.value = ""));
+  displayBook(myLibrary);
 });
 
 //Show Form
@@ -65,5 +65,4 @@ btnAdd.addEventListener("click", () => {
 btnSub.addEventListener("click", () => {
   form.classList.add("goaway");
   container.classList.remove("goaway");
-  displayBook();
 });
