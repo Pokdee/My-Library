@@ -12,15 +12,25 @@
     <header>
       <button type="button" class="add">New Book</button>
     </header>
-    <form class="form goaway" action="submit">
-      <label for="name">Title</label>
+    <form class="form" action="submit">
+      <label class="inputLabel" for="name">Title</label>
       <input class="input" type="text" name="name" id="Title" />
-      <label for="author">Author</label>
+      <label class="inputLabel" for="author">Author</label>
       <input class="input" type="text" name="author" id="author" />
-      <label for="page">Pages</label>
+      <label class="inputLabel" for="page">Pages</label>
       <input class="input" type="number" name="pages" id="page" />
-      <label for="status">Status</label>
-      <input class="input" type="text" name="read" id="status" />
+
+      <div class="check">
+        <label class="radioLable" for="read">Have you read it ?</label>
+        <input
+          class="radioInput"
+          type="radio"
+          name="read"
+          id="read"
+          read="true"
+        />
+      </div>
+
       <button type="submit" class="btn-sub">Submit</button>
     </form>
     <div class="container"></div>

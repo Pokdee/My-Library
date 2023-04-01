@@ -6,6 +6,7 @@ const inDAta = document.querySelectorAll(".input");
 const btnAdd = document.querySelector(".add");
 const btnSub = document.querySelector(".btn-sub");
 const btnDel = document.querySelector(".btnRmove");
+
 // const Book = function (name, author, pages, read) {
 //   this.name = name;
 //   this.author = author;
@@ -21,7 +22,7 @@ let myLibrary = [
     name: "The Title",
     author: "John",
     pages: 123,
-    read: "read ",
+    read: true,
   },
 ];
 //DisplayBooks
@@ -34,14 +35,17 @@ const displayBook = function (array) {
     <h3>${book.name}</h3>
     <h3>${book.author}</h3>
     <h3>${book.pages}</h3>
-    <h3>${book.read}</h3>
-    <button id = "${i}" class ="btnRmove">Remove Book</button>
+    <h3>${book.read ? "Read" : "Not Read"}</h3>
+    <div class='btnCon'>
+    <button class = "read" > Read </button>
+    <button id = "${i}" class ="btnRmove">Remove</button>
+    </div>
   </div>
     `;
     container.insertAdjacentHTML("beforeend", html);
   }
 };
-displayBook(myLibrary);
+// displayBook(myLibrary);
 
 //Form
 form.addEventListener("submit", (e) => {
@@ -52,9 +56,13 @@ form.addEventListener("submit", (e) => {
   for (let items of data) {
     obj[items[0]] = items[1];
   }
+
+  obj["read"] = obj.read ? true : false;
   myLibrary.push(obj);
+  console.log(myLibrary);
+
   inDAta.forEach((i) => (i.value = ""));
-  displayBook(myLibrary);
+  // displayBook(myLibrary);
 });
 
 //Show Form
@@ -75,5 +83,15 @@ container.addEventListener("click", (e) => {
     const bookIndex = e.target.getAttribute("id");
     myLibrary.splice(bookIndex, 1);
     displayBook(myLibrary);
+  }
+});
+
+//Read Book
+
+container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("read")) {
+    const index = e.target.nextElementSibling.getAttribute("id");
+    myLibrary[index].read = "true";
+    console.log(myLibrary);
   }
 });
