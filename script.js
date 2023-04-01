@@ -5,7 +5,7 @@ const form = document.querySelector(".form");
 const inDAta = document.querySelectorAll(".input");
 const btnAdd = document.querySelector(".add");
 const btnSub = document.querySelector(".btn-sub");
-
+const btnDel = document.querySelector(".btnRmove");
 // const Book = function (name, author, pages, read) {
 //   this.name = name;
 //   this.author = author;
@@ -35,6 +35,7 @@ const displayBook = function (array) {
     <h3>${book.author}</h3>
     <h3>${book.pages}</h3>
     <h3>${book.read}</h3>
+    <button id = "${i}" class ="btnRmove">Remove Book</button>
   </div>
     `;
     container.insertAdjacentHTML("beforeend", html);
@@ -65,4 +66,14 @@ btnAdd.addEventListener("click", () => {
 btnSub.addEventListener("click", () => {
   form.classList.add("goaway");
   container.classList.remove("goaway");
+});
+
+//Remove Book
+
+container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btnRmove")) {
+    const bookIndex = e.target.getAttribute("id");
+    myLibrary.splice(bookIndex, 1);
+    displayBook(myLibrary);
+  }
 });

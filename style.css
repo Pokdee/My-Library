@@ -29,7 +29,7 @@ button {
 
 .book {
   width: 13rem;
-  height: 13rem;
+  height: 15rem;
   text-align: center;
   background-color: rgb(114, 84, 126);
   border-radius: 2rem;
@@ -60,6 +60,13 @@ input {
 .btn-sub {
   justify-self: center;
   grid-column: 1/3;
+}
+.btnRmove {
+  width: 80%;
+  background-color: rgb(104, 21, 28);
+}
+.btnRmove:active {
+  background-color: rgb(211, 181, 71);
 }
 .add {
   background-color: brown;
