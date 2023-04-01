@@ -6,16 +6,7 @@ const inDAta = document.querySelectorAll(".input");
 const btnAdd = document.querySelector(".add");
 const btnSub = document.querySelector(".btn-sub");
 const btnDel = document.querySelector(".btnRmove");
-
-// const Book = function (name, author, pages, read) {
-//   this.name = name;
-//   this.author = author;
-//   this.pages = pages;
-//   this.read = read;
-//   this.info = function () {
-//     return `${this.read}`;
-//   };
-// };
+const radio = document.querySelector(".radioInput");
 
 let myLibrary = [
   {
@@ -37,7 +28,7 @@ const displayBook = function (array) {
     <h3>${book.pages}</h3>
     <h3>${book.read ? "Read" : "Not Read"}</h3>
     <div class='btnCon'>
-    <button class = "read" > Read </button>
+    <button class = "read ${book.read ? "Rdone" : ""}"> Read </button>
     <button id = "${i}" class ="btnRmove">Remove</button>
     </div>
   </div>
@@ -45,7 +36,7 @@ const displayBook = function (array) {
     container.insertAdjacentHTML("beforeend", html);
   }
 };
-// displayBook(myLibrary);
+displayBook(myLibrary);
 
 //Form
 form.addEventListener("submit", (e) => {
@@ -59,10 +50,10 @@ form.addEventListener("submit", (e) => {
 
   obj["read"] = obj.read ? true : false;
   myLibrary.push(obj);
-  console.log(myLibrary);
 
   inDAta.forEach((i) => (i.value = ""));
-  // displayBook(myLibrary);
+  radio.checked = false;
+  displayBook(myLibrary);
 });
 
 //Show Form
@@ -91,7 +82,11 @@ container.addEventListener("click", (e) => {
 container.addEventListener("click", (e) => {
   if (e.target.classList.contains("read")) {
     const index = e.target.nextElementSibling.getAttribute("id");
-    myLibrary[index].read = "true";
-    console.log(myLibrary);
+    if (myLibrary[index].read) {
+      myLibrary[index].read = false;
+    } else {
+      myLibrary[index].read = true;
+    }
+    displayBook(myLibrary);
   }
 });

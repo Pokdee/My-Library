@@ -92,6 +92,9 @@ button {
   width: 35%;
   background-color: rgb(104, 21, 28);
 }
+.Rdone {
+  background-color: rgb(0, 128, 68);
+}
 .btnRmove:active,
 .read:active {
   background-color: rgb(211, 181, 71);
